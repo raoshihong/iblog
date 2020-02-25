@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!-- 引入vue.js库 -->
+        <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+    </head>
+
+    <body>
+        <!-- 这里使用表达式计算 -->
+        <div id="app">
+            <span>{{age + 1}} </span>
+            <span> === {{isShow?"显示":"不显示"}}</span>
+            <!-- 还可以使用js内置的方法-->
+            <span>{{word.split(" ").reverse().join(",")}}</span>
+        </div>
+        <script type="text/javascript">
+            var vm = new Vue({
+                el:'#app',//指定选择器
+                data: {
+                    age:10,
+                    isShow:false,
+                    word:"rao shihong"
+                } 
+            });
+        </script>
+    </body>
+</html>
