@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入vue.js-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入vue-router.js-->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 使用a标签指定路由,点击a标签改变地址栏,vue-router会检测到url改变,并根据匹配到的路由进行组件视图展示 -->
+        <a href="#/login">登录</a>
+        <a href="#/register">注册</a>
+        <!-- 5.视图占位,凡是路由匹配到到组件都展示在这块 -->
+        <router-view></router-view>
+    </div>
+    <script>
+        //1. 创建自定义组件对象
+        const login = {
+            template:'<div>登录</div>'
+        }
+
+        const register = {
+            template:'<div>注册</div>'
+        }
+        
+        //2.创建路由配置,路由规则有路由path，对应的组件等
+        const routes = [
+            {path:'/login',component:login},//每个route都要对应vue组件,这里必须是一个组件实例对象
+            {path:'/register',component:register}
+        ]
+
+        //3.创建一个VueRouter对象,并指明router配置
+        const router = new VueRouter({
+            routes:routes
+        });
+
+        //4.将router挂载到vue实例中
+        var vm = new Vue({
+            el:'#app',
+            router:router
+        });
+
+    </script>
+
+</body>
+</html>
