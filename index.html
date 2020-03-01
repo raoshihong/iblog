@@ -5,24 +5,38 @@
         <title></title>
         <!-- 引入vue.js库 -->
         <script src="vue.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     </head>
-
     <body>
-        <!-- 这里使用表达式计算 -->
         <div id="app">
-            <span>{{age + 1}} </span>
-            <span> === {{isShow?"显示":"不显示"}}</span>
-            <!-- 还可以使用js内置的方法-->
-            <span>{{word.split(" ").reverse().join(",")}}</span>
+            <label>用户名:<input type="text" v-model="loginDto.username"></label>
+            <label>密码:<input type="password" v-model="loginDto.password"></label>
+            <input type="button" @click="login" value="登录">
         </div>
-        <script type="text/javascript">
+        <script>
             var vm = new Vue({
-                el:'#app',//指定选择器
-                data: {
-                    age:10,
-                    isShow:false,
-                    word:"rao shihong"
-                } 
+                el:"#app",
+                data(){
+                    return {
+                        loginDto:{
+                            username:null,
+                            password:null
+                        }
+                    }
+                },
+                methods:{
+                    login(){
+                        //在这里进行ajax请求
+                        var config = {//定义配置
+                        }
+                        //使用post请求
+                        axios.post("http://localhost:8081/react/api/login",this.loginDto,config)
+                            .then(function(res){
+                                //获取响应数据
+                                console.log(res);
+                            })
+                    }
+                }
             });
         </script>
     </body>
