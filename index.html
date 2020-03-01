@@ -9,32 +9,48 @@
     </head>
     <body>
         <div id="app">
-            <label>用户名:<input type="text" v-model="loginDto.username"></label>
-            <label>密码:<input type="password" v-model="loginDto.password"></label>
-            <input type="button" @click="login" value="登录">
+            <input type="button" value="点击" v-on:click="getElement">
+            <!-- 在标签上使用ref -->
+            <button id="btn1" ref="btn">按钮</button>
+            
+            <!-- 在自定义组件上使用ref-->
+            <mydiv ref="mydiv1"></mydiv>
         </div>
         <script>
-            var vm = new Vue({
-                el:"#app",
+            //自定义一个组件
+            Vue.component("mydiv",{
                 data(){
                     return {
-                        loginDto:{
-                            username:null,
-                            password:null
-                        }
+                        msg:"aaaa"
                     }
                 },
                 methods:{
-                    login(){
-                        //在这里进行ajax请求
-                        var config = {//定义配置
-                        }
-                        //使用post请求
-                        axios.post("http://localhost:8081/react/api/login",this.loginDto,config)
-                            .then(function(res){
-                                //获取响应数据
-                                console.log(res);
-                            })
+                    test(){
+                        console.log("test");
+                    }
+                },
+                template:'<div>{{msg}}</div>'
+            });
+
+            var vm = new Vue({
+                el:"#app",
+                methods:{
+                    getElement(){
+                        //传统的是
+                        var btn1 = document.getElementById("btn1");
+                        console.log(btn1);
+                        //在vue实例对象中有一个$refs属性,这个属性存放着ref引用的dom
+                        console.log(this.$refs.btn);//获取上面的button对象
+                        
+                        //通过$refs获取自定义组件对象
+                        console.log(this.$refs.mydiv1);
+                        //获取自定义组件的数据属性
+                        console.log(this.$refs.mydiv1.msg);
+                        //修改自定义组件的数据属性
+                        this.$refs.mydiv1.msg = "bbbbb";
+
+                        //调用自定义组件的方法
+                        this.$refs.mydiv1.test();
                     }
                 }
             });
