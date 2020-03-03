@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <!-- 引入vue.js-->
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <!-- 引入vue-router.js-->
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+    <style>
+        .header{
+            background-color: burlywood;
+            height: 30px;
+        }
+        .left{
+            background-color: chartreuse;
+            width: 200px;
+            float: left;
+            height: 400px;
+        }
+        .right{
+            background-color: coral;
+            height: 400px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <router-view name="header"></router-view>
+        <router-view name="left"></router-view>
+        <router-view name="right"></router-view>
+    </div>
+    <script>
+        const header = {
+            template:'<div class="header">header区域</div>'
+        }
+        const left = {
+            template:`<div class="left">
+                        <ul>
+                            <li><router-link to="/channel">渠道管理</router-link></li>
+                            <li><router-link to="/role">角色管理</router-link></li>
+                        </ul>
+                    </div>`
+        }
+        const right = {
+            template:`<div class="right">
+                        <router-view name="channel-manage"></router-view>
+                        <router-view name="role-manage"></router-view>
+                    </div>`
+        }
+        const channelManage = {
+            template:'<div>渠道管理</div>'
+        }
+        const roleManage = {
+            template:'<div>角色管理</div>'
+        }
+
+        //2.创建路由配置,路由规则有路由path，对应的组件等
+        const routes = [
+            {
+                path:'/',
+                components:{//这里通过components指定多个组件
+                    'header':header,
+                    'left':left,  
+                    'right':right
+                },
+                children:[//通过children指定嵌套路由
+                    {
+                        path:'channel',
+                        components:{//指定对应视图名称的router-view展示指定的组件
+                            'channel-manage':channelManage
+                        }
+                    },
+                    {
+                        path:'role',
+                        components:{
+                            'role-manage':roleManage
+                        }
+                    }
+                ]
+            }
+        ]
+        //3.创建一个VueRouter对象,并指明router配置
+        const router = new VueRouter({
+            routes:routes
+        });
+        //4.将router挂载到vue实例中
+        var vm = new Vue({
+            el:'#app',
+            router:router
+        });
+    </script>
+</body>
+</html>
