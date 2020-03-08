@@ -9,7 +9,10 @@ const login = {
 //使用vue
 var vm = new Vue({
     el:"#app",
-    components:{
-        "login":login
+    // components:{
+    //     "login":login
+    // }
+    render:function(creatElement){
+        return creatElement(login);
     }
 });
