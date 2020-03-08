@@ -1,24 +1,11 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <script src="https://unpkg.com/vue/dist/vue.js"></script>
     </head>
     <body>
         <div id="app">
-            aaasdfa
+            <!-- 使用login组件-->
             <login></login>
         </div>
-        <script>
-            //创建一个组件
-            const login = {
-                template:"<div>这是登录组件</div>"
-            }
-            var vm = new Vue({
-                el:"#app",
-                render:function(creatElements){//createElements是行参,参数名任意,这个参数是一个函数的引用
-                    return creatElements(login);//通过调用函数创建组件,并渲染
-                }
-            });
-        </script>
     </body>
 </html>
