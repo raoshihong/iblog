@@ -2,6 +2,8 @@ const path = require("path");
 
 //引入html-webpack-plugin插件
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+//引入vue-loader的插件
+const {VueLoaderPlugin} = require("vue-loader")
 
 module.exports={
     mode:"development",
@@ -20,8 +22,14 @@ module.exports={
         new HtmlWebpackPlugin({
             filename:"index.html",
             template:path.join(__dirname,"./src/index.html")
-        })
+        }),
+        new VueLoaderPlugin()
     ],
+    module:{
+        rules:[
+            {test:/\.vue$/,use:['vue-loader']}
+        ]
+    },
     resolve:{//指定资源解析规则
         alias:{
             //import Vue from 'vue' 以vue开头的引入,都使用模块下的vue/dist/vue.js
