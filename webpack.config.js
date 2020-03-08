@@ -31,5 +31,16 @@ module.exports  = {
             filename: 'index.html',//指定生成的文件名
             template: path.join(__dirname,'./src/index.html')//指定模版文件,根据模版文件生成对应的html
         })
-    ]
+    ],
+    module:{
+        //在模块中使用规则
+        rules:[
+            //loader的加载规则是从右到左,所以是先使用css-loader,再使用style-loader
+            {test:/\.css$/,use:['style-loader','css-loader']},
+            {test:/\.less$/,use:['style-loader','css-loader','less-loader']},
+            {test:/\.scss$/,use:['style-loader','css-loader','sass-loader']},
+            {test:/\.(jpg|png|git|bmp|jpeg)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'},
+            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'}
+        ]
+    }
 }

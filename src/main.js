@@ -2,6 +2,11 @@
 //格式  import 对象名  from 模块路径
 import $ from 'jquery'
 
+//通过import引入css
+import "./css/index.css"
+import "./css/index.less"
+import "./css/index.scss"
+
 //使用jquery对象
 $(function(){
     //通过jquery操作dom
