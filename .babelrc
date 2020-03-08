@@ -1,0 +1,4 @@
+{
+    "presets":["env","stage-0"],//指明安装了哪些babel的语法工具
+    "plugins":["transform-runtime"]//指明安装了哪些babel的插件工具
+}

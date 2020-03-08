@@ -40,7 +40,9 @@ module.exports  = {
             {test:/\.less$/,use:['style-loader','css-loader','less-loader']},
             {test:/\.scss$/,use:['style-loader','css-loader','sass-loader']},
             {test:/\.(jpg|png|git|bmp|jpeg)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'},
-            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'}
+            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'},
+            //指定.js文件使用babel-loader来编译加载,并排除node_modules下的js文件，注意test和exclude的表达式都不能用引号包括
+            {test:/\.js$/,use:"babel-loader",exclude:/node_modules/}
         ]
     }
 }
