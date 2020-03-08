@@ -1,18 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <!-- <script type="text/javascript" src="../bundle.js"></script> -->
-        <!-- <link rel="stylesheet" href="../css/index.css"/> -->
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
     </head>
     <body>
-        <ul>
-            <li>aaaaa</li>
-            <li>bbbbb</li>
-            <li>ccccc</li>
-            <li>ddddd</li>
-            <li>eeeee</li>
-            <li>fffff</li>
-        </ul>
-        <div id="app"></div>
+        <div id="app">
+            aaasdfa
+            <login></login>
+        </div>
+        <script>
+            //创建一个组件
+            const login = {
+                template:"<div>这是登录组件</div>"
+            }
+            var vm = new Vue({
+                el:"#app",
+                render:function(creatElements){//createElements是行参,参数名任意,这个参数是一个函数的引用
+                    return creatElements(login);//通过调用函数创建组件,并渲染
+                }
+            });
+        </script>
     </body>
 </html>
