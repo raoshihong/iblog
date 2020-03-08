@@ -5,6 +5,6 @@ import $ from 'jquery'
 //使用jquery对象
 $(function(){
     //通过jquery操作dom
-    $("li:even").css("background-color", "yellow");
+    $("li:even").css("background-color", "green");
     $("li:odd").css("background-color","red");
 })
