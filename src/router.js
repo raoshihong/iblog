@@ -7,9 +7,7 @@ Vue.use(VueRouter)
 
 //引入自定义组件
 import Login from "./components/Login.vue"
-import User from "./components/User.vue"
 import UserList from "./components/UserList.vue"
-import UserDetail from "./components/UserDetail.vue"
 
 //创建路由
 const vueRouter = new VueRouter({
@@ -19,18 +17,8 @@ const vueRouter = new VueRouter({
             component:Login
         },
         {
-            path:'/user',
-            component:User,
-            children:[//定义子路由
-                {
-                    path:'list',//  /user/list
-                    component:UserList
-                },
-                {
-                    path:'detail',//  /user/detail
-                    component:UserDetail
-                }
-            ]
+            path:'/userlist',
+            component:UserList
         }
     ]
 });

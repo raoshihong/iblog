@@ -28,7 +28,9 @@ module.exports={
     module:{
         rules:[
             {test:/\.css$/,use:['style-loader','css-loader']},
-            {test:/\.vue$/,use:['vue-loader']}
+            {test:/\.vue$/,use:['vue-loader']},
+            {test:/\.(jpg|png|git|bmp|jpeg)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'},
+            {test:/\.(ttf|eot|svg|woff|woff2)$/,use:'url-loader?limit=56600&name=[path][name].[ext]'}
         ]
     },
     resolve:{//指定资源解析规则
